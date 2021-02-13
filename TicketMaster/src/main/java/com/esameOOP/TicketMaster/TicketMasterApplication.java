@@ -18,16 +18,11 @@ public class TicketMasterApplication {
 
 	public static void main(String[] args) throws Exception {
 		
-		Vector <String> keywords = new Vector();
-		keywords.add("Eagles");
-				
-			Stats s = new Stats("US");
-			s.divisionegeneri();
+
 			
 			Filters f = new Filters("US");
-			f.filtrapergenere("Rock");
-			System.out.println(f.checknome(keywords.get(0)));
-			f.filtraperkeyword(keywords);
+
+			f.filtrapertempo(3);
 	}
 
 }
