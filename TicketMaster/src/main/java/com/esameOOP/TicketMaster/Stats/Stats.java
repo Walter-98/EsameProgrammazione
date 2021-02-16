@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.json.simple.JSONObject;
 
-import com.esameOOP.TicketMaster.Excepiton.paeseException;
+import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
 import com.fasterxml.*;
 import com.fasterxml.jackson.databind.ObjectMapper;

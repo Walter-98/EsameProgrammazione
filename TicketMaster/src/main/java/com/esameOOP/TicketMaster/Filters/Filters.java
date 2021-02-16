@@ -8,8 +8,7 @@ import java.util.Vector;
 
 import org.json.simple.JSONObject;
 
-import com.esameOOP.TicketMaster.Excepiton.mesiException;
-import com.esameOOP.TicketMaster.Excepiton.paeseException;
+import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
 import com.esameOOP.TicketMaster.Stats.Stats;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -129,8 +128,8 @@ public class Filters {
 	
 	
 	
-	//ricerca per periodo di tempo
-	public static ArrayList<String> filtrapertempo(int numeromesi) throws Exception,mesiException {
+	//ricerca numero eventi per periodo di tempo
+	public static ArrayList<String> filtrapertempo(int numeromesi) throws Exception{
 
 		/*
 		 * numero mesi indica il tipo di filtraggio temporale 2 corrisponde a bimestrale

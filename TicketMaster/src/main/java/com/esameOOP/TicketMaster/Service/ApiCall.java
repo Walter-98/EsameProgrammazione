@@ -14,6 +14,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import com.esameOOP.TicketMaster.Exception.paeseException;
+
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.util.ArrayList;
@@ -57,7 +59,7 @@ public class ApiCall {
     
     // CHIAMATA API
     // mi restituisce tutti gli eventi di uno stato
-    public static String cercaperpaese(String paese) throws Exception {
+    public static String cercaperpaese(String paese) throws Exception,paeseException  {
         HttpGet request = new HttpGet("https://app.ticketmaster.com/discovery/v2/events.json?countryCode="+paese+"&apikey=FllJXbNKxY3a3AuWj9SpWFE8tc0siktY");
 
         try (CloseableHttpResponse response = httpClient.execute(request)) {
@@ -92,6 +94,19 @@ public class ApiCall {
         }
         return null;
     }
-   
+   public static String getPaese(String paese) {
+	   String p[]= {"US","AD","AI","AR","AU","AT","AZ","BS","BH","BB","BE","BM","BR","BG","CA","CL","CN","CO","CR","HR",
+	   		        "CY","CZ","DK","DO","EC","EE","FO","FI","FR","GE","DE","GH","GI","GB","GR","HK","HU","IS","IN","IE",
+	   		        "IL","IT","JM","JP","KR","LV","LB","LT","LU","MY","MT","MX","MC","ME","MA","NL","AN","NZ","ND","NO",
+	   		        "PE","PL","PT","RO","RU","LC","SA","RS","SG","SK","SI","ZA","ES","SE","CH","TW","TH","TT","TR","UA",
+	   		        "AE","UY","VE"};
+	   for(int i=0;i<p.length; i++){
+	   if( paese== p[i]) {
+		   return paese;
+	   }else
+		   return paeseException.getException();
+	   }
+	return paeseException.getException();
+   }
 
 }

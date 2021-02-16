@@ -7,7 +7,9 @@ import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import  static org.junit.jupiter.api.Assertions.*;
 
+import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
 import com.esameOOP.TicketMaster.Stats.Stats;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,11 +20,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 */
 
 public class StatsTest {
-
-	private Stats stats;
-	private double mediaValue, varValue;
-	private ApiCall call;
-
+	
+	static List<Object> eventi;
+	
+	
+	
 	
 	
 	
@@ -42,22 +44,30 @@ public class StatsTest {
 	 */
 	@Test
 	public void statisticsTest() throws Exception {
+		
+		
 		String paese="US";
-		String DateInizio = "2020-01-01T00:00:00Z";
-		String DateFine ="2020-12-31T23:59:59Z";
-		String jsonInString = call.cercaperpaese(paese);
-		 int[] numeroeventi = new int[12];
+	    Stats stats= new Stats(paese);
+	    String DateInizio[] = {"2020-01-01T00:00:00Z","2020-02-01T00:00:00Z","2020-03-01T00:00:00Z","2020-04-01T00:00:00Z",
+                "2020-05-01T00:00:00Z","2020-06-01T00:00:00Z","2020-07-01T00:00:00Z","2020-08-01T00:00:00Z",
+                "2020-09-01T00:00:00Z","2020-10-01T00:00:00Z","2020-11-01T00:00:00Z","2020-12-01T00:00:00Z"};
+
+	    String DateFine[] = {"2020-01-31T23:59:59Z","2020-02-28T23:59:59Z","2020-03-31T23:59:59Z","2020-04-30T23:59:59Z",
+    		  "2020-05-31T23:59:59Z","2020-06-30T23:59:59Z","2020-07-31T23:59:59Z","2020-08-31T23:59:59Z",
+    		  "2020-09-30T23:59:59Z","2020-10-3123:59:59Z","2020-11-30T59:59:59Z","2020-12-31T23:59:59Z"};
+		int[] numeroeventi = new int[12];
 		 int media = 0;
 		 int min = 0;
 		 int max = 0;
 		 ArrayList<Object> eventi2 = null;
-		for (int i =0;i<12;i++) {
-			 
+		 
+		 for (int i =0;i<12;i++) {
+		 
 			 ApiCall obj2 = new ApiCall();
 			 ObjectMapper mapper = new ObjectMapper();
-			 String jsonInString1 = obj2.cercapertempo(DateInizio,DateFine, paese);
+			 String jsonInString = obj2.cercapertempo(DateInizio[i],DateFine[i], paese);
 		
-			 Map<String, Object> map = mapper.readValue(jsonInString1, Map.class);
+			 Map<String, Object> map = mapper.readValue(jsonInString, Map.class);
 
 			 String prettyStaff1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
 
@@ -87,6 +97,13 @@ public class StatsTest {
 
 		 }
 		 media = media / 12;
+		 ArrayList<String>c = new ArrayList<String>();
+		 c.add("numero massimo di eventi in un mese: " + max + " eventi");
+		 c.add("numero minimo di eventi in un mese:  " + min + " eventi");
+		 c.add("media eventi mensili:                " +media+ " eventi/mese");
+			 assertEquals(c,Stats.mediaeventimensili());
+			 
+			
 	}
 	
 }
