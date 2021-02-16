@@ -1,7 +1,7 @@
  ### TicketMaster-Esame di Programmazione ad Oggetti
  ### Introduzione
 Il programma permette di vedere tutti gli eventi presenti in un determinato periodo,in un determinato paese.Inserendo una nazione (es. US) il programma effettuerà una chiamata API
-e ritornerà tutti gli eventi presenti nella nazione digitata in ingresso. In aggiunta alla nazione, in ingresso, si può aggiungere una parola chiave(es.NFL) o un periodo temporale. Il programma offre anche funzionalità riguardante il fitraggio per periodo,genere e parola chiave e offre metodi per calcolare le statistiche per genere, per eventi mensili dando in uscita minimo massimo e media degli eventi. Per poter utilizzare correttamente il programma consigliamo l'utilizzo di POSTMAN. 
+e ritornerà tutti gli eventi presenti nella nazione digitata in ingresso. In aggiunta alla nazione, in ingresso, si può aggiungere una parola chiave(es.NFL) o un periodo temporale. Il programma offre anche funzionalità riguardanti il fitraggio per periodo,genere e parola chiave e offre metodi per calcolare le statistiche per genere, per eventi mensili dando in uscita minimo massimo e media degli eventi. Per poter utilizzare correttamente il programma consigliamo l'utilizzo di POSTMAN. 
 ### UML
 **UseCase Diagram**
 L'utente si interfaccia al programma per cercare gli eventi in una nazione inserendo il codice identificativo della nazione(non accetta il nome completo: es.Stati uniti errato mentre US ritornerà la risposta del programma), oppure inserendo una parola chiave o un periodo temporale. Inoltre l'utente potrà direttamente applicare un filtraggio in base al genere,al periodo e alla parola chiave e potrà leggere le statistiche riguardati la nazione inserita.
@@ -9,7 +9,7 @@ L'utente si interfaccia al programma per cercare gli eventi in una nazione inser
  **Class Diagram**
 Il programma è suddiviso in packages:
 
-Il package _Controller_ contiene la classe ControllerClass e all' interno sono presenti i metodi per la chiamata API per il filtraggio e per le statistiche che si occupa di gestire le chiamate GET.
+Il package _Controller_ contiene la classe ControllerClass è all' interno sono presenti i metodi per la chiamata API per il filtraggio e per le statistiche che si occupa di gestire le chiamate GET.
 
 Il package _Service_ contiene la classe APICall. la classe si occupa di gestire le chiamate API prendendo in ingresso le informazioni inserite dall'utente.
 
@@ -35,7 +35,13 @@ Invece per le date :
 
 ![Annotazione 2021-02-15 172219](https://user-images.githubusercontent.com/75211109/107977188-0053ee00-6fbb-11eb-89b4-b1cca7112480.png)
 
-**_Attenzione_**: il programma accetta solo date scritte in formato yyyy-mm-ggT00:00:00Z
+**_Attenzione_**: il programma accetta solo date scritte in formato **ISO 8601** (yyyy-mm-ggT00:00:00Z).
+
+
+
+### Eccezioni
+Abbiamo gestito le eccezioni creando due nuove classi: **paeseException** e **mesiException**.
+l'obbiettivo di tali classi e stampare un messaggio visibile su postman. Nel caso l'ID della nazione non è presente nel file .txt ritornerà una stringa e allo stesso modo funziona la classe mesiException che stamperà un messaggio quando i mesi inseriti nel filtraggio è superiore a 12. 
 
 
 ### Test
