@@ -26,6 +26,19 @@ Le richieste che l'utente può fare usando Postman devono essere effettuate all'
 
 
 
+![Annotazione 2021-02-15 172218](https://user-images.githubusercontent.com/75211109/108036161-28356700-7038-11eb-9c2f-118913124872.png)
 
 
-![Annotazione 2021-02-15 172218](https://user-images.githubusercontent.com/75211109/107975543-8e7aa500-6fb8-11eb-81bf-c84aa0b39a82.png)
+
+Invece per le date :
+
+
+![Annotazione 2021-02-15 172219](https://user-images.githubusercontent.com/75211109/107977188-0053ee00-6fbb-11eb-89b4-b1cca7112480.png)
+
+**_Attenzione_**: il programma accetta solo date scritte in formato yyyy-mm-ggT00:00:00Z
+
+
+### Test
+Abbiamo implementato due unità di test:
+**_FilterTest_** per testare la classe Filters. Viene testato il metodo che gestisce il filtraggio temporale.
+_**StatsTest**_ per testare la classe Stats. Viene testato il metodo che gestisce le statistiche temporali.
