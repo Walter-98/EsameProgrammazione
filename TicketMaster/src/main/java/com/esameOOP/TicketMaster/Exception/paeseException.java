@@ -15,6 +15,7 @@ public class paeseException extends IOException{
 		super();
 	}
 	public static String getException(){
-		return "Errore.Inserire correttamente l'ID del paese!";
+	   String err ="Errore.Inserire correttamente l'ID del paese!";
+	   return err;
 	}
 }

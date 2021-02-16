@@ -50,6 +50,8 @@ public class ApiCall {
                  return EntityUtils.toString(entity);
              }
 
+         }catch(Exception e) {
+         	throw new paeseException();
          }
 		return null;
     }
@@ -71,6 +73,8 @@ public class ApiCall {
                 return EntityUtils.toString(entity);
             }
            
+        }catch(Exception e) {
+        	throw new paeseException();
         }
         return null;
     }
@@ -91,22 +95,9 @@ public class ApiCall {
                 return EntityUtils.toString(entity);
             }
            
+        }catch(Exception e) {
+        	throw new paeseException();
         }
         return null;
     }
-   public static String getPaese(String paese) {
-	   String p[]= {"US","AD","AI","AR","AU","AT","AZ","BS","BH","BB","BE","BM","BR","BG","CA","CL","CN","CO","CR","HR",
-	   		        "CY","CZ","DK","DO","EC","EE","FO","FI","FR","GE","DE","GH","GI","GB","GR","HK","HU","IS","IN","IE",
-	   		        "IL","IT","JM","JP","KR","LV","LB","LT","LU","MY","MT","MX","MC","ME","MA","NL","AN","NZ","ND","NO",
-	   		        "PE","PL","PT","RO","RU","LC","SA","RS","SG","SK","SI","ZA","ES","SE","CH","TW","TH","TT","TR","UA",
-	   		        "AE","UY","VE"};
-	   for(int i=0;i<p.length; i++){
-	   if( paese== p[i]) {
-		   return paese;
-	   }else
-		   return paeseException.getException();
-	   }
-	return paeseException.getException();
-   }
-
 }

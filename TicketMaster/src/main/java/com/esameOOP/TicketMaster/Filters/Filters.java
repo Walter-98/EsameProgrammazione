@@ -8,6 +8,8 @@ import java.util.Vector;
 
 import org.json.simple.JSONObject;
 
+import com.esameOOP.TicketMaster.Exception.genereException;
+import com.esameOOP.TicketMaster.Exception.mesiException;
 import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
 import com.esameOOP.TicketMaster.Stats.Stats;
@@ -29,7 +31,7 @@ public class Filters {
 	
 	
 	// costruttore
-	public Filters(String paese) throws paeseException {
+	public Filters(String paese) throws paeseException,Exception {
 		super();
 		this.paese = paese;
 
@@ -50,6 +52,7 @@ public class Filters {
 
 		} catch(Exception e) {
     		e.printStackTrace();
+    		throw new paeseException();
 		}
 	}
 
@@ -58,8 +61,8 @@ public class Filters {
 	
 	
 	// ricerca eventi per genere
-	public static Map<String, Object> filtrapergenere(String genere) {
-
+	public static Map<String, Object> filtrapergenere(String genere) throws genereException {
+		try {
 		for (int i = 0; i < eventi.size(); i++) {
 			Map<String, Object> map2 = (Map<String, Object>) eventi.get(i);
 			ArrayList<Object> arr1 = (ArrayList<Object>) map2.get("classifications");
@@ -75,6 +78,10 @@ public class Filters {
 			}
 		}
 		return null;
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new genereException();
+		}
 	}
 
 	
@@ -129,7 +136,7 @@ public class Filters {
 	
 	
 	//ricerca numero eventi per periodo di tempo
-	public static ArrayList<String> filtrapertempo(int numeromesi) throws Exception{
+	public static ArrayList<String> filtrapertempo(int numeromesi) throws Exception,mesiException{
 
 		/*
 		 * numero mesi indica il tipo di filtraggio temporale 2 corrisponde a bimestrale
@@ -154,7 +161,7 @@ public class Filters {
 		int min = 0;
 		int max = 0;
 		ArrayList<Object> eventi2 = null;
-
+		try {
 		for (;;) {
 
 			ApiCall obj2 = new ApiCall();
@@ -196,6 +203,10 @@ public class Filters {
 			}
 		}
 		media = media / numeroeventi.size();
+		}catch(Exception e) {
+			e.printStackTrace();
+    		throw new mesiException();
+		}
 		ArrayList<String>c= new ArrayList<String>();
 		c.add("numero massimo di eventi ogni " + numeromesi + " mesi: " + max + " eventi");
 		c.add("numero minimo di eventi ogni " + numeromesi + " mesi: " + min + " eventi");

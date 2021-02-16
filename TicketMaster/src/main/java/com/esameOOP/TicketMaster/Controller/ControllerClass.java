@@ -32,7 +32,6 @@ public class ControllerClass {
 	 String chiamataParolaChiave(  
 	  @RequestParam(name="parola",defaultValue="NFL") String parola,
 	  @RequestParam(name="paese",defaultValue="US") String paese)throws Exception,paeseException { 
-		 ApiCall.getPaese(paese);
 	  return ApiCall.cercaPerParolaChiave(parola,paese);
 	  }
 	 
@@ -40,9 +39,8 @@ public class ControllerClass {
 	 //Chiamata API passando solo il paese
 	 @RequestMapping(value = "/country",method = RequestMethod.GET) public
 	 String chiamataPaese( 
-	  @RequestParam(name="paese",defaultValue="US") String paese)throws Exception,paeseException { 
-		 ApiCall.getPaese(paese);
-	  return ApiCall.cercaperpaese(paese);
+	  @RequestParam(name="paese",defaultValue="US") String paese)throws Exception,paeseException {  
+		return paeseException.getException(); 
 	  }
 	 
 	 
@@ -53,7 +51,7 @@ public class ControllerClass {
 			 @RequestParam(name="datainizio",defaultValue="2021-02-28T00:00:00Z") String datainizio,
 			 @RequestParam(name="datafine",defaultValue="2021-06-28T23:59:59Z") String datafine,
 			 @RequestParam(name="countryCode",defaultValue="US") String paese)throws Exception,paeseException { 
-		 ApiCall.getPaese(paese);
+		
 	  return ApiCall.cercapertempo(datainizio,datafine,paese);
 	  }
 	 
@@ -63,8 +61,7 @@ public class ControllerClass {
 	 @RequestMapping(value = "/filter/genere",method = RequestMethod.GET) public
 	 Map<String,Object> chiamataFiltri( 
 			 @RequestParam(name="paese",defaultValue="US")String paese,
-			 @RequestParam(name="genere",defaultValue="Theatre") String genere)throws Exception,paeseException {
-		 ApiCall.getPaese(paese);
+			 @RequestParam(name="genere",defaultValue="Theatre") String genere)throws Exception,genereException {
 		 Filters filter= new Filters(paese);
 		  return Filters.filtrapergenere(genere);
 	 }
@@ -73,8 +70,7 @@ public class ControllerClass {
 	 @RequestMapping(value = "/filter/parola",method = RequestMethod.GET) public
 	 ArrayList<Object> chiamataFiltriKeyword( 
 			 @RequestParam(name="paese",defaultValue="US")String paese,
-			 @RequestParam(name="parola",defaultValue="rock") Vector<String> keyword)throws Exception,paeseException{
-		 ApiCall.getPaese(paese);
+			 @RequestParam(name="parola",defaultValue="rock") Vector<String> keyword)throws Exception{
 		 Filters filter= new Filters(paese);
 		  return Filters.filtraperkeyword(keyword);
 	 }
@@ -85,8 +81,7 @@ public class ControllerClass {
 	 @RequestMapping(value = "/filter/tempo",method = RequestMethod.GET) public
 	 ArrayList<String> chiamataFiltriTempo(
 			 @RequestParam(name="paese",defaultValue="US")String paese,
-			 @RequestParam(name="mesi",defaultValue="6") int numero)throws Exception,paeseException {
-		 ApiCall.getPaese(paese);
+			 @RequestParam(name="mesi",defaultValue="6") int numero)throws Exception,mesiException{
 		 Filters filter= new Filters(paese);
 		  return Filters.filtrapertempo(numero);
 	 }
@@ -95,8 +90,7 @@ public class ControllerClass {
 	 
 	 //Statistiche eventi per paese
 	 @RequestMapping(value = "/stats/eventi",method = RequestMethod.GET) public
-	 int chiamataStatsEventi(@RequestParam(name="paese",defaultValue="US") String paese) throws Exception,paeseException {
-		 ApiCall.getPaese(paese);
+	 int chiamataStatsEventi(@RequestParam(name="paese",defaultValue="US") String paese) throws Exception{
 		 Stats stats= new Stats(paese);
 	  return Stats.numeroeventipaese();
 	 }
@@ -106,8 +100,7 @@ public class ControllerClass {
 	 
 	 //Statistiche per generi
 	 @RequestMapping(value = "/stats/genere",method = RequestMethod.GET) public
-	 HashMap<String,Integer> chiamataStatsGeneri(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception,paeseException {
-		 ApiCall.getPaese(paese);
+	 HashMap<String,Integer> chiamataStatsGeneri(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception,genereException{
 		 Stats stats= new Stats(paese);
 		 return Stats.divisionegeneri();
 	 }
@@ -117,17 +110,19 @@ public class ControllerClass {
 	 
 	 //Statistiche su min max e media
 	 @RequestMapping(value = "/stats/media",method = RequestMethod.GET) public
-	 ArrayList<String> chiamataMedia(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception,paeseException {
-		 ApiCall.getPaese(paese);
+	 ArrayList<String> chiamataMedia(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception,mesiException{
 		 Stats stats= new Stats(paese);
 		 return Stats.mediaeventimensili();
 	 }
 	 
 	 
-
-
-	 @ExceptionHandler(paeseException.class)
-		public static String ErrorPage(paeseException e) {
-			return e.getException ();
-		}
+		  @ExceptionHandler(paeseException.class) public static String
+		  Errore(paeseException e) { return e.getException (); }
+		 
+		  
+		  @ExceptionHandler(mesiException.class) public static String
+		  Errore(mesiException e) { return e.getException (); }
+		  
+		  @ExceptionHandler(genereException.class) public static String
+		  Errore(genereException e) { return e.getException (); }
 }

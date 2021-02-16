@@ -6,6 +6,8 @@ import java.util.*;
 
 import org.json.simple.JSONObject;
 
+import com.esameOOP.TicketMaster.Exception.genereException;
+import com.esameOOP.TicketMaster.Exception.mesiException;
 import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
 import com.fasterxml.*;
@@ -28,7 +30,7 @@ public class Stats {
 	// costruttore della classe, contiene tutti gli eventi di uno stato, memorizzati
 	// in eventi
 
-	public Stats(String paese) throws paeseException{
+	public Stats(String paese) throws paeseException,Exception{
 		super();
 		this.paese = paese;
 
@@ -50,6 +52,8 @@ public class Stats {
 			this.eventi = (ArrayList<Object>) map2.get("events");
 		}catch(Exception e) {
     		e.printStackTrace();
+          	throw new paeseException();
+            
 		}
 			
 		}
@@ -65,10 +69,10 @@ public class Stats {
 	
 	
 	// numero totale di eventi raggruppati per genere
-	public static HashMap<String, Integer> divisionegeneri () {
+	public static HashMap<String, Integer> divisionegeneri ()throws genereException{
 
 		HashMap<String, Integer> generi = new HashMap<String, Integer>();
-
+		try {
 		for (int i = 0; i < eventi.size(); i++) {
 			Map<String, Object> map2 = (Map<String, Object>) eventi.get(i);
 			ArrayList<Object> arr1 = (ArrayList<Object>) map2.get("classifications");
@@ -84,6 +88,10 @@ public class Stats {
 				}				
 			}
 		}
+	}catch(Exception e) {
+		e.printStackTrace();
+		throw new genereException();
+	}
 		return generi;
 	}
 
@@ -106,7 +114,7 @@ public class Stats {
 		 int min = 0;
 		 int max = 0;
 		 ArrayList<Object> eventi2 = null;
-		 
+		 try {
 		 for (int i =0;i<12;i++) {
 		 
 			 ApiCall obj2 = new ApiCall();
@@ -143,6 +151,10 @@ public class Stats {
 
 		 }
 		 media = media / 12;
+		 }catch(Exception e) {
+			 e.printStackTrace();
+			 throw new mesiException();
+		 }
 		 ArrayList<String>c = new ArrayList<String>();
 		 c.add("numero massimo di eventi in un mese: " + max + " eventi");
 		 c.add("numero minimo di eventi in un mese:  " + min + " eventi");
