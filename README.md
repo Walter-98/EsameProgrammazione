@@ -48,3 +48,7 @@ l'obbiettivo di tali classi e stampare un messaggio visibile su postman. Nel cas
 Abbiamo implementato due unità di test:
 **_FilterTest_** per testare la classe Filters. Viene testato il metodo che gestisce il filtraggio temporale.
 _**StatsTest**_ per testare la classe Stats. Viene testato il metodo che gestisce le statistiche temporali.
+
+
+### Autori
+Il programma è stato creato da Filippo Polidori e Walter Nigito.
