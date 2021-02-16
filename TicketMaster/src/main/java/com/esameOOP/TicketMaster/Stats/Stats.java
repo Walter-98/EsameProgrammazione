@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.json.simple.JSONObject;
 
-import com.esameOOP.TicketMaster.Exception.genereException;
+
 import com.esameOOP.TicketMaster.Exception.mesiException;
 import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
@@ -69,10 +69,10 @@ public class Stats {
 	
 	
 	// numero totale di eventi raggruppati per genere
-	public static HashMap<String, Integer> divisionegeneri ()throws genereException{
+	public static HashMap<String, Integer> divisionegeneri (){
 
 		HashMap<String, Integer> generi = new HashMap<String, Integer>();
-		try {
+		
 		for (int i = 0; i < eventi.size(); i++) {
 			Map<String, Object> map2 = (Map<String, Object>) eventi.get(i);
 			ArrayList<Object> arr1 = (ArrayList<Object>) map2.get("classifications");
@@ -88,10 +88,7 @@ public class Stats {
 				}				
 			}
 		}
-	}catch(Exception e) {
-		e.printStackTrace();
-		throw new genereException();
-	}
+	
 		return generi;
 	}
 

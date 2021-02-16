@@ -61,7 +61,7 @@ public class ControllerClass {
 	 @RequestMapping(value = "/filter/genere",method = RequestMethod.GET) public
 	 Map<String,Object> chiamataFiltri( 
 			 @RequestParam(name="paese",defaultValue="US")String paese,
-			 @RequestParam(name="genere",defaultValue="Theatre") String genere)throws Exception,genereException {
+			 @RequestParam(name="genere",defaultValue="Theatre") String genere)throws Exception {
 		 Filters filter= new Filters(paese);
 		  return Filters.filtrapergenere(genere);
 	 }
@@ -100,7 +100,7 @@ public class ControllerClass {
 	 
 	 //Statistiche per generi
 	 @RequestMapping(value = "/stats/genere",method = RequestMethod.GET) public
-	 HashMap<String,Integer> chiamataStatsGeneri(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception,genereException{
+	 HashMap<String,Integer> chiamataStatsGeneri(@RequestParam(name="paese",defaultValue="US") String paese)throws Exception{
 		 Stats stats= new Stats(paese);
 		 return Stats.divisionegeneri();
 	 }
@@ -123,6 +123,5 @@ public class ControllerClass {
 		  @ExceptionHandler(mesiException.class) public static String
 		  Errore(mesiException e) { return e.getException (); }
 		  
-		  @ExceptionHandler(genereException.class) public static String
-		  Errore(genereException e) { return e.getException (); }
+		 
 }

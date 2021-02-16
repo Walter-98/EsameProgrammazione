@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import org.json.simple.JSONObject;
 
-import com.esameOOP.TicketMaster.Exception.genereException;
+
 import com.esameOOP.TicketMaster.Exception.mesiException;
 import com.esameOOP.TicketMaster.Exception.paeseException;
 import com.esameOOP.TicketMaster.Service.ApiCall;
@@ -61,8 +61,8 @@ public class Filters {
 	
 	
 	// ricerca eventi per genere
-	public static Map<String, Object> filtrapergenere(String genere) throws genereException {
-		try {
+	public static Map<String, Object> filtrapergenere(String genere) {
+	
 		for (int i = 0; i < eventi.size(); i++) {
 			Map<String, Object> map2 = (Map<String, Object>) eventi.get(i);
 			ArrayList<Object> arr1 = (ArrayList<Object>) map2.get("classifications");
@@ -78,11 +78,9 @@ public class Filters {
 			}
 		}
 		return null;
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw new genereException();
-		}
-	}
+		}		
+	
+	
 
 	
 	
