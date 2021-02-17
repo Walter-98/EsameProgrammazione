@@ -9,6 +9,10 @@ L'utente si interfaccia al programma per cercare gli eventi in una nazione inser
  **Class Diagram**
 Il programma è suddiviso in packages:
 
+
+![Class Diagram](https://user-images.githubusercontent.com/75218985/108222881-7d0cd680-7139-11eb-8fbd-84cd0534d24f.PNG)
+
+
 Il package _Controller_ contiene la classe ControllerClass è all' interno sono presenti i metodi per la chiamata API per il filtraggio e per le statistiche che si occupa di gestire le chiamate GET.
 
 Il package _Service_ contiene la classe APICall. la classe si occupa di gestire le chiamate API prendendo in ingresso le informazioni inserite dall'utente.
