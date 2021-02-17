@@ -43,10 +43,13 @@ Invece per le date :
 Attenzione: il programma accetta solo date scritte in formato ISO 8601 (yyyy-mm-ggT00:00:00Z).
 
 **Eccezioni**
+
 Abbiamo gestito le eccezioni creando due nuove classi: paeseException e mesiException. l'obbiettivo di tali classi e stampare un messaggio visibile su postman. Nel caso l'ID della nazione non è presente nel file .txt ritornerà una stringa e allo stesso modo funziona la classe mesiException che stamperà un messaggio quando i mesi inseriti nel filtraggio è superiore a 12.
 
 **Test**
+
 Abbiamo implementato due unità di test: FilterTest per testare la classe Filters. Viene testato il metodo che gestisce il filtraggio temporale. StatsTest per testare la classe Stats. Viene testato il metodo che gestisce le statistiche temporali.
 
 ### Autori
+
 Il programma è stato creato da Filippo Polidori e Walter Nigito.
